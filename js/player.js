@@ -9,13 +9,14 @@ class Player {
             color: 0xffffff
         });
         this.tail = [];
+
         this.tail.push(new THREE.Mesh(this.tailGeometry, this.tailMaterial));
         scene.add(this.tail[0]);
 
 
         this.snakeLen = 5;
 
-        this.direction = "false"; // "up" "down" "left" "right"
+        this.direction = "right"; // "up" "down" "left" "right"
 
         this.head = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
@@ -28,6 +29,8 @@ class Player {
     }
 
     update() {
+
+
 
         console.log(this.tail);
 
@@ -44,10 +47,17 @@ class Player {
             this.pos.x++;
         }
 
+        for (let i = 0; i <= this.tail.length - 1; i++) {
+            if (this.tail[i].position.x == this.pos.x && this.tail[i].position.y == this.pos.y) {
+                console.log("dead");
+                location.reload();
+            }
+        }
+
         this.head.position.x = this.pos.x;
         this.head.position.y = this.pos.y;
 
-        for (var i = this.tail.length - 1; i >= 1; i--) {
+        for (let i = this.tail.length - 1; i >= 1; i--) {
             let newPos = new THREE.Vector2(this.tail[i - 1].position.x, this.tail[i - 1].position.y);
 
             this.tail[i].position.x = newPos.x;
