@@ -59,6 +59,7 @@ class Controller {
         this.mouseSprite.position.z = this.mouse.z;
 
 
+
         this.leftarrow = false;
         this.uparrow = false;
         this.rightarrow = false;
@@ -78,6 +79,22 @@ class Controller {
 
         if (this.keyCodes[40] || this.keyCodes[83]) {
             this.downarrow = true;
+        }
+
+        let buffer = 10;
+
+        if (Math.abs(this.mouse.x) < Math.abs(this.mouse.y)) {
+            if (0 < this.mouse.y) {
+                this.uparrow = true;
+            } else {
+                this.downarrow = true;
+            }
+        } else {
+            if (0 < this.mouse.x) {
+                this.rightarrow = true;
+            } else {
+                this.leftarrow = true;
+            }
         }
     }
 
