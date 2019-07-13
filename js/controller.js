@@ -14,7 +14,7 @@ class Controller {
 
         this.mouseRaycaster = new THREE.Raycaster();
         this.htmlmouse = new THREE.Vector2();
-        this.mouse = new THREE.Vector2();
+        this.mouse = new THREE.Vector3();
 
         let spriteMap = new THREE.TextureLoader().load("./assets/images/pointer.png");
 
@@ -51,10 +51,12 @@ class Controller {
         if (intersect[0]) {
             this.mouse.x = intersect[0].point.x;
             this.mouse.y = intersect[0].point.y;
+            this.mouse.z = intersect[0].point.z;
         }
 
         this.mouseSprite.position.x = this.mouse.x;
         this.mouseSprite.position.y = this.mouse.y;
+        this.mouseSprite.position.z = this.mouse.z;
 
 
         this.leftarrow = false;
