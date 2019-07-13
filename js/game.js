@@ -10,8 +10,8 @@ let raycaster;
 let mouse;
 
 let world = {
-    width: 50,
-    height: 50
+    width: 60,
+    height: 60
 }
 
 
@@ -28,6 +28,7 @@ let backgroundPlane = new THREE.Mesh(
         // wireframe: true
     })
 );
+backgroundPlane.position.z = -1;
 backgroundPlane.receiveShadow = true;
 scene.add(backgroundPlane);
 // backgroundPlane.material.visible = false;
@@ -47,16 +48,15 @@ scene.add(ambientLight); // **Disabled**
 /**
  * directionalLight 
  */
-var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+var directionalLight = new THREE.PointLight(0xffffff, 1, 500, 0.01);
 directionalLight.castShadow = true; // default false
 
 //Set up shadow properties for the light
-directionalLight.shadow.mapSize.width = 512; // default
-directionalLight.shadow.mapSize.height = 512; // default
-directionalLight.shadow.camera.near = 0.5; // default
-directionalLight.shadow.camera.far = 100
+// directionalLight.shadow.mapSize.width = 512; // default 512
+// directionalLight.shadow.mapSize.height = 512; // default 512
+// directionalLight.shadow.camera.near = 0; // default
+// directionalLight.shadow.camera.far = 1000
 // default
-directionalLight.position.set(0, 0, 1);
 scene.add(directionalLight);
 
 // //Create a helper for the shadow camera (optional)
@@ -198,9 +198,9 @@ function update() {
 
 
     if (clock.getElapsedTime() > 0.1) {
-        // if (controller.keyCodes[32]) {
-        //     player.grow();
-        // }
+        if (controller.keyCodes[32]) {
+            player.grow();
+        }
         player.update();
 
 

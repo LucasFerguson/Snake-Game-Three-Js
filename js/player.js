@@ -34,7 +34,7 @@ class Player {
 
     update() {
 
-        console.log(this.tail);
+        // console.log(this.tail);
 
         if (this.direction == "up") {
             this.pos.y++;
@@ -47,6 +47,19 @@ class Player {
         }
         if (this.direction == "right") {
             this.pos.x++;
+        }
+
+        if (this.pos.x > world.width / 2) {
+            this.pos.x = -world.width / 2;
+        }
+        if (this.pos.x < -world.width / 2) {
+            this.pos.x = world.width / 2;
+        }
+        if (this.pos.y > world.height / 2) {
+            this.pos.y = -world.height / 2;
+        }
+        if (this.pos.y < -world.height / 2) {
+            this.pos.y = world.height / 2;
         }
 
         for (let i = 0; i <= this.tail.length - 1; i++) {
@@ -97,12 +110,12 @@ class Player {
 
         let cube = new THREE.Mesh(this.tailGeometry, this.tailMaterial);
 
-        let newPos = new THREE.Vector2(this.tail[this.tail.length - 1].x, this.tail[this.tail.length - 1].y);
-        cube.position.x = newPos.x;
-        cube.position.y = newPos.y;
+        cube.position.x = 100;
+        cube.position.y = 100;
+
 
         cube.castShadow = true; //default is false
-        cube.receiveShadow = false; //default
+        cube.receiveShadow = true; //default
 
         this.tail.push(cube);
 
