@@ -10,8 +10,8 @@ let raycaster;
 let mouse;
 
 let world = {
-    width: 100,
-    height: 100
+    width: 50,
+    height: 50
 }
 
 
@@ -24,10 +24,11 @@ let shipSprite;
 let backgroundPlane = new THREE.Mesh(
     new THREE.PlaneGeometry(world.width, world.height, 1, 1),
     new THREE.MeshPhongMaterial({
-        color: 0xffffff
+        color: 0x111111
         // wireframe: true
     })
 );
+backgroundPlane.receiveShadow = true;
 scene.add(backgroundPlane);
 // backgroundPlane.material.visible = false;
 ////    ////    ////
@@ -39,6 +40,28 @@ scene.add(backgroundPlane);
  */
 let ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(ambientLight); // **Disabled**
+////    ////    ////
+///    ////    ////
+//    ////    ////
+
+/**
+ * directionalLight 
+ */
+var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.castShadow = true; // default false
+
+//Set up shadow properties for the light
+directionalLight.shadow.mapSize.width = 512; // default
+directionalLight.shadow.mapSize.height = 512; // default
+directionalLight.shadow.camera.near = 0.5; // default
+directionalLight.shadow.camera.far = 100
+// default
+directionalLight.position.set(0, 0, 1);
+scene.add(directionalLight);
+
+// //Create a helper for the shadow camera (optional)
+// var helper = new THREE.CameraHelper(directionalLight.shadow.camera);
+// scene.add(helper);
 ////    ////    ////
 ///    ////    ////
 //    ////    ////
@@ -68,9 +91,36 @@ let clock = new THREE.Clock(true);
 ///    ////    ////
 //    ////    ////
 
+/**
+ * Food
+ */
+let food = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshLambertMaterial({
+        color: 0xff0000
+    })
+);
+scene.add(food);
+food.receiveShadow = true;
 
-function setup() {}
+let foodLight = new THREE.PointLight(0xff0000, 1, 20);
+scene.add(foodLight);
 
+////    ////    ////
+///    ////    ////
+//    ////    ////
+
+function setup() {
+    eatfood();
+}
+
+function eatfood() {
+    food.position.x = Math.round(Math.random() * world.width - world.width / 2);
+    food.position.y = Math.round(Math.random() * world.height - world.height / 2);
+
+    foodLight.position.set(food.position.x, food.position.y, 3);
+
+}
 
 let deltaTime;
 let then = 0;
@@ -143,12 +193,17 @@ function update() {
     // }
 
 
+    directionalLight.position.x = Math.sin(frameCount / 100) * 50;
+    directionalLight.position.z = Math.cos(frameCount / 100) * 50;
+
 
     if (clock.getElapsedTime() > 0.1) {
-        if (controller.keyCodes[32]) {
-            player.grow();
-        }
+        // if (controller.keyCodes[32]) {
+        //     player.grow();
+        // }
         player.update();
+
+
         clock.start();
 
     }

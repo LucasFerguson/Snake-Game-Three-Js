@@ -5,7 +5,7 @@ class Player {
         this.acc = new THREE.Vector2(0, 0);
 
         this.tailGeometry = new THREE.BoxGeometry(1, 1, 1);
-        this.tailMaterial = new THREE.MeshBasicMaterial({
+        this.tailMaterial = new THREE.MeshLambertMaterial({
             color: 0xffffff
         });
         this.tail = [];
@@ -20,17 +20,19 @@ class Player {
 
         this.head = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
+            new THREE.MeshLambertMaterial({
                 color: 0x00ff00
             })
         );
         scene.add(this.head);
 
+
+        this.pointLight = new THREE.PointLight(0x00ff00, 1, 20);
+        scene.add(this.pointLight);
+
     }
 
     update() {
-
-
 
         console.log(this.tail);
 
@@ -52,10 +54,18 @@ class Player {
                 console.log("dead");
                 location.reload();
             }
+            if (food.position.x == this.pos.x && food.position.y == this.pos.y) {
+                this.grow();
+                this.grow();
+                this.grow();
+                eatfood();
+            }
         }
 
         this.head.position.x = this.pos.x;
         this.head.position.y = this.pos.y;
+
+        this.pointLight.position.set(this.pos.x, this.pos.y, 3);
 
         for (let i = this.tail.length - 1; i >= 1; i--) {
             let newPos = new THREE.Vector2(this.tail[i - 1].position.x, this.tail[i - 1].position.y);
@@ -90,6 +100,9 @@ class Player {
         let newPos = new THREE.Vector2(this.tail[this.tail.length - 1].x, this.tail[this.tail.length - 1].y);
         cube.position.x = newPos.x;
         cube.position.y = newPos.y;
+
+        cube.castShadow = true; //default is false
+        cube.receiveShadow = false; //default
 
         this.tail.push(cube);
 
