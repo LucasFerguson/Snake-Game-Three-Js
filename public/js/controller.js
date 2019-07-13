@@ -24,8 +24,6 @@ class Controller {
         });
         this.mouseSprite = new THREE.Sprite(spriteMaterial);
         scene.add(this.mouseSprite);
-
-
     }
 
 
@@ -85,16 +83,16 @@ class Controller {
      * @function - Render what Keys are pressed
      */
     render() {
-        let start = 65;
-        let end = 90; // 222
-        let pos = 0;
+        // let start = 65;
+        // let end = 90; // 222
+        // let pos = 0;
 
-        fill(255);
-        for (var i = start; i <= end; i++) {
-            pos++;
-            text(this.keyCodes[i], 0, 10 * pos + 50);
-            text(this.keyChar[i], 40, 10 * pos + 50);
-        }
+        // fill(255);
+        // for (var i = start; i <= end; i++) {
+        //     pos++;
+        //     text(this.keyCodes[i], 0, 10 * pos + 50);
+        //     text(this.keyChar[i], 40, 10 * pos + 50);
+        // }
     }
 
     /**
@@ -178,6 +176,7 @@ class Controller {
 
 //// onkeydown onkeyup function ////
 onkeydown = onkeyup = function (e) {
+    // @ts-ignore
     e = e || event; // to deal with IE
     controller.keyCodes[e.keyCode] = e.type == 'keydown';
     /* insert conditional here */

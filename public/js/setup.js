@@ -49,16 +49,9 @@ camera.position.z = 50;
 var textureLoader = new THREE.TextureLoader();
 
 var images = {
-    skybox: {
-        front: textureLoader.load("./assets/images/skybox/front.png"),
-        back: textureLoader.load("./assets/images/skybox/back.png"),
-        up: textureLoader.load("./assets/images/skybox/up.png"),
-        down: textureLoader.load("./assets/images/skybox/down.png"),
-        right: textureLoader.load("./assets/images/skybox/right.png"),
-        left: textureLoader.load("./assets/images/skybox/left.png")
-    }
+
 };
-console.log(images);
+// console.log(images);
 // C:\Users\Lucas\Documents\GitHub\Space-Shooter-Three-Js-Node\public\assets\images\skybox\purplenebula_bk.png
 ////    ////    ////
 ///    ////    ////
@@ -74,9 +67,9 @@ console.log(images);
 window.addEventListener('resize', onWindowResize, false);
 
 function onWindowResize() {
-    windowWidth = window.innerWidth;
-    windowHeight = window.innerHeight;
-    renderer.setSize(windowWidth, windowHeight);
-    camera.aspect = windowWidth / windowHeight;
+    let canvasWidth = window.innerWidth;
+    let canvasHeight = window.innerHeight;
+    renderer.setSize(canvasWidth, canvasHeight);
+    camera.aspect = canvasWidth / canvasHeight;
     camera.updateProjectionMatrix();
 }
