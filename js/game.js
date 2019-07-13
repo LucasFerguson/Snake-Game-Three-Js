@@ -101,7 +101,7 @@ let food = new THREE.Mesh(
     })
 );
 scene.add(food);
-food.receiveShadow = true;
+food.castShadow = true;
 
 let foodLight = new THREE.PointLight(0xff0000, 1, 20);
 scene.add(foodLight);
