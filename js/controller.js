@@ -59,7 +59,6 @@ class Controller {
         this.mouseSprite.position.z = this.mouse.z;
 
 
-
         this.leftarrow = false;
         this.uparrow = false;
         this.rightarrow = false;
@@ -203,6 +202,11 @@ onkeydown = onkeyup = function (e) {
 }
 //// ////
 
+document.addEventListener("touchstart", touchstart, false);
+
+function touchstart(event) {
+    console.log("touchstart   event : ", event);
+}
 
 function onMouseMove(event) {
     // calculate mouse position in normalized device coordinates
