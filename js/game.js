@@ -193,8 +193,8 @@ function update() {
     // }
 
 
-    directionalLight.position.x = Math.sin(frameCount / 400) * 100;
-    directionalLight.position.z = Math.cos(frameCount / 400) * 100;
+    directionalLight.position.x = Math.sin(frameCount / 400) * 50;
+    directionalLight.position.z = Math.cos(frameCount / 400) * 50;
 
 
     if (clock.getElapsedTime() > 0.1) {
