@@ -52,8 +52,8 @@ var directionalLight = new THREE.PointLight(0xffffff, 1, 500, 0.01);
 directionalLight.castShadow = true; // default false
 
 //Set up shadow properties for the light
-// directionalLight.shadow.mapSize.width = 512; // default 512
-// directionalLight.shadow.mapSize.height = 512; // default 512
+// directionalLight.shadow.mapSize.width = 5120; // default 512
+// directionalLight.shadow.mapSize.height = 5120; // default 512
 // directionalLight.shadow.camera.near = 0; // default
 // directionalLight.shadow.camera.far = 1000
 // default
@@ -193,8 +193,8 @@ function update() {
     // }
 
 
-    directionalLight.position.x = Math.sin(frameCount / 100) * 50;
-    directionalLight.position.z = Math.cos(frameCount / 100) * 50;
+    directionalLight.position.x = Math.sin(frameCount / 400) * 100;
+    directionalLight.position.z = Math.cos(frameCount / 400) * 100;
 
 
     if (clock.getElapsedTime() > 0.1) {
