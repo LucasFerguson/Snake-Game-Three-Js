@@ -68,9 +68,11 @@ class Player {
                 location.reload();
             }
             if (food.position.x == this.pos.x && food.position.y == this.pos.y) {
-                this.grow();
-                this.grow();
-                this.grow();
+
+                for (let i = 0; i <= 10; i++) {
+                    this.grow();
+                }
+
                 eatfood();
             }
         }

@@ -197,15 +197,12 @@ function update() {
     directionalLight.position.z = Math.cos(frameCount / 400) * 50;
 
 
-    if (clock.getElapsedTime() > 0.1) {
+    if (clock.getElapsedTime() > 0.09) {
         if (controller.keyCodes[32]) {
             player.grow();
         }
         player.update();
-
-
         clock.start();
-
     }
 
 }
