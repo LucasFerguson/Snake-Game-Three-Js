@@ -82,19 +82,19 @@ class Controller {
 
         let buffer = 10;
 
-        if (Math.abs(this.mouse.x) < Math.abs(this.mouse.y)) {
-            if (0 < this.mouse.y) {
-                this.uparrow = true;
-            } else {
-                this.downarrow = true;
-            }
-        } else {
-            if (0 < this.mouse.x) {
-                this.rightarrow = true;
-            } else {
-                this.leftarrow = true;
-            }
-        }
+        // if (Math.abs(this.mouse.x) < Math.abs(this.mouse.y)) {
+        //     if (0 < this.mouse.y) {
+        //         this.uparrow = true;
+        //     } else {
+        //         this.downarrow = true;
+        //     }
+        // } else {
+        //     if (0 < this.mouse.x) {
+        //         this.rightarrow = true;
+        //     } else {
+        //         this.leftarrow = true;
+        //     }
+        // }
     }
 
     /**
