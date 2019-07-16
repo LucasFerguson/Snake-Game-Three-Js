@@ -16,6 +16,9 @@ class Player {
 
         this.snakeLen = 5;
 
+        this.invulnerable = false;
+        this.recharge = 0;
+
         this.direction = "right"; // "up" "down" "left" "right"
 
         this.head = new THREE.Mesh(
@@ -27,12 +30,36 @@ class Player {
         scene.add(this.head);
 
 
+
         this.pointLight = new THREE.PointLight(0x00ff00, 1, 20);
         scene.add(this.pointLight);
+
 
     }
 
     update() {
+
+        this.recharge++;
+
+        if (this.invulnerable) {
+            this.pointLight.color.setHex(0x0000ff);
+            this.head.material.color.setHex(0x0000ff);
+
+            if (this.recharge == 15) {
+                this.invulnerable = false;
+            }
+        } else {
+            this.pointLight.color.setHex(0x00ff00);
+            this.head.material.color.setHex(0x00ff00);
+
+            if (controller.shift && this.recharge >= 10) {
+                this.invulnerable = true;
+                this.recharge = 0;
+                console.log("shift");
+            }
+        }
+
+        console.log(this.invulnerable, this.recharge);
 
         // console.log(this.tail);
 
@@ -63,10 +90,13 @@ class Player {
         }
 
         for (let i = 0; i <= this.tail.length - 1; i++) {
-            if (this.tail[i].position.x == this.pos.x && this.tail[i].position.y == this.pos.y) {
-                console.log("dead");
-                location.reload();
+            if (!this.invulnerable) {
+                if (this.tail[i].position.x == this.pos.x && this.tail[i].position.y == this.pos.y) {
+                    console.log("dead");
+                    location.reload();
+                }
             }
+
             if (food.position.x == this.pos.x && food.position.y == this.pos.y) {
 
                 for (let i = 0; i <= 10; i++) {

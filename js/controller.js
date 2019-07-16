@@ -59,6 +59,11 @@ class Controller {
         this.mouseSprite.position.z = this.mouse.z;
 
 
+        this.shift = false;
+        if (this.keyCodes[16]) {
+            this.shift = true;
+        }
+
         this.leftarrow = false;
         this.uparrow = false;
         this.rightarrow = false;
