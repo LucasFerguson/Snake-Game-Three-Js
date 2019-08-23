@@ -167,16 +167,32 @@ function update() {
 
 
     if (controller.uparrow) {
-        player.direction = "up";
+        if (player.direction == "down") {
+            player.direction = "down";
+        } else {
+            player.direction = "up";
+        }
     }
     if (controller.downarrow) {
-        player.direction = "down";
+        if (player.direction == "up") {
+            player.direction = "up";
+        } else {
+            player.direction = "down";
+        }
     }
     if (controller.leftarrow) {
-        player.direction = "left";
+        if (player.direction == "right") {
+            player.direction = "right";
+        } else {
+            player.direction = "left";
+        }
     }
     if (controller.rightarrow) {
-        player.direction = "right";
+        if (player.direction == "left") {
+            player.direction = "left";
+        } else {
+            player.direction = "right";
+        }
     }
 
     //shift 16

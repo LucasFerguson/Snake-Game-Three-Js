@@ -45,14 +45,14 @@ class Player {
             this.pointLight.color.setHex(0x0000ff);
             this.head.material.color.setHex(0x0000ff);
 
-            if (this.recharge == 15) {
+            if (this.recharge >= 15) {
                 this.invulnerable = false;
             }
         } else {
             this.pointLight.color.setHex(0x00ff00);
             this.head.material.color.setHex(0x00ff00);
 
-            if (controller.shift && this.recharge >= 10) {
+            if (controller.shift && this.recharge >= 30) {
                 this.invulnerable = true;
                 this.recharge = 0;
                 console.log("shift");
